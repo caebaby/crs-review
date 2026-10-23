@@ -1,0 +1,485 @@
+/* ============================================================
+   CRS — DESIGN UPGRADE LAYER (round 1, homepage A/B)
+   Loaded AFTER crs.css, only by home-a.html / home-b.html.
+   crs.css and home.html stay untouched as the baseline.
+
+   What this layer does (DESIGN-UPGRADE.md findings 1-7):
+   - Lets the brand own surfaces: one dark ground, red grounds.
+   - ONE surface color = CRS red. Gold stays button-only (MASTER).
+   - Varied section rhythm: exhale / dense / cta paddings.
+   - Weight contrast in display type (Work Sans 300 vs 700).
+   - Layered, floating imagery for depth.
+   - Homepage signature: the shoe schematic draws itself and
+     resolves into the CRS mark.
+   Motion rules: base styles fully visible; animation only inside
+   @supports(animation-timeline) + no-preference. Parallax uses the
+   independent `translate` property (kit LESSONS #4).
+   ============================================================ */
+
+:root{
+  --ink-deep:#211B17;        /* warm charcoal, derived from --color-text */
+  --ink-deep-2:#2B241F;
+  --on-dark:#F6F1E8;
+  --on-dark-mute:rgba(246,241,232,.76);
+  --line-dark:rgba(246,241,232,.16);
+}
+
+/* ---------- rhythm ---------- */
+.u-exhale{padding:clamp(88px,10.5vw,156px) 0}
+.u-dense{padding:clamp(48px,5.6vw,80px) 0}
+.u-cta{padding:clamp(72px,8.4vw,124px) 0}
+
+/* ---------- grounds ---------- */
+.g-ivory{background:var(--color-bg)}
+.g-cream{background:var(--color-cream)}
+.g-cream-light{background:var(--color-cream-light)}
+.g-dark{background:var(--ink-deep);color:var(--on-dark)}
+.g-red{background:var(--color-primary);color:#fff}
+.g-deepred{background:var(--color-primary-dark);color:#fff}
+
+:is(.g-dark,.g-red,.g-deepred) :is(h1,h2,h3,h4,.h2,.h3,blockquote){color:inherit}
+:is(.g-dark,.g-red,.g-deepred) :is(.lead,.body,p){color:var(--on-dark-mute)}
+:is(.g-red,.g-deepred) :is(.lead,.body,p){color:rgba(255,255,255,.84)}
+:is(.g-dark,.g-red,.g-deepred) .muted{color:var(--on-dark-mute)}
+:is(.g-dark,.g-red,.g-deepred) .eyebrow{color:var(--color-cream)}
+:is(.g-dark,.g-red,.g-deepred) .btn-secondary{color:var(--on-dark);border-color:rgba(246,241,232,.55)}
+:is(.g-dark,.g-red,.g-deepred) .btn-secondary:hover{background:var(--on-dark);color:var(--color-primary-dark);border-color:var(--on-dark)}
+:is(.g-dark,.g-red,.g-deepred) .btn-ghost{color:var(--on-dark)}
+:is(.g-dark,.g-red,.g-deepred) .pull{color:#fff}
+:is(.g-dark,.g-red,.g-deepred) cite{color:#fff}
+:is(.g-dark,.g-red,.g-deepred) cite span{color:var(--on-dark-mute)}
+
+/* footer separates from a red close */
+.u-page footer{background:var(--ink-deep)}
+.u-page .foot-cta{border-color:var(--line-dark)}
+
+/* ---------- type ---------- */
+.u-page h2,.u-page .h2{max-width:18em}
+.display-split{font-size:clamp(2.75rem,5.4vw,4.75rem);line-height:1.02;letter-spacing:-.03em;font-weight:300;text-wrap:balance}
+.display-split .hv{display:block;font-weight:700}
+.statement{font-size:clamp(1.9rem,3.6vw,3.1rem);line-height:1.14;letter-spacing:-.022em;font-weight:300;max-width:20ch;text-wrap:balance}
+.statement strong{font-weight:700;color:var(--color-primary)}
+:is(.g-dark,.g-red,.g-deepred) .statement strong{color:inherit}
+.statement-sub{margin-top:var(--s-8);max-width:52ch}
+
+/* ============================================================
+   HERO A — split, wider copy column, floating product card
+   ============================================================ */
+.hero-a{padding:clamp(56px,8vw,120px) 0 clamp(72px,8.5vw,128px)}
+.hero-a .hero-grid{grid-template-columns:1.22fr .78fr;gap:clamp(40px,5vw,88px)}
+.hero-a .hero-text .lead{max-width:36ch}
+.hero-a .media-wrap{position:relative}
+.hero-a .hero-media{aspect-ratio:4/5}
+.float-card{position:absolute;z-index:4;left:-14%;bottom:9%;width:52%;
+  background:var(--color-surface);border-radius:var(--r-md);overflow:hidden;
+  box-shadow:0 22px 50px rgba(45,45,45,.24);border:6px solid var(--color-surface)}
+.float-card .fc-img{position:relative;aspect-ratio:4/3;background:var(--color-cream)}
+.float-card .fc-cap{padding:10px 8px 4px;font-size:.78rem;font-weight:600;letter-spacing:.02em;color:var(--color-text)}
+.float-card .fc-cap span{display:block;font-weight:500;color:var(--color-text-muted);font-size:.74rem;margin-top:2px}
+
+/* ============================================================
+   HERO B — full-bleed real footage frame, directional scrim,
+   copy on the calm (right) side. Poster-first; click plays.
+   ============================================================ */
+.hero-b{position:relative;min-height:clamp(580px,84svh,840px);display:flex;align-items:center;
+  overflow:hidden;isolation:isolate;color:#fff;background:var(--ink-deep)}
+.hero-b__media{position:absolute;inset:0;z-index:0}
+.hero-b__media .ph-img{object-position:28% 50%}
+.hero-b__scrim{position:absolute;inset:0;z-index:1;pointer-events:none;background:
+  linear-gradient(270deg,rgba(33,27,23,.9) 0%,rgba(33,27,23,.74) 30%,rgba(33,27,23,.28) 56%,rgba(33,27,23,0) 74%),
+  linear-gradient(180deg,rgba(33,27,23,.45) 0%,rgba(33,27,23,0) 22%,rgba(33,27,23,0) 72%,rgba(33,27,23,.5) 100%)}
+.hero-b__content{position:relative;z-index:2;width:100%}
+.hero-b__copy{margin-left:auto;max-width:560px}
+.hero-b .eyebrow{color:var(--color-cream)}
+.hero-b .display-split{color:#fff}
+.hero-b .lead{color:rgba(255,255,255,.86);max-width:34ch;margin:var(--s-6) 0 var(--s-8)}
+.hero-b .btn-secondary{color:#fff;border-color:rgba(255,255,255,.6)}
+.hero-b .btn-secondary:hover{background:#fff;color:var(--color-primary-dark)}
+.watch{display:inline-flex;align-items:center;gap:12px;margin-top:var(--s-8);color:#fff;font-weight:600;font-size:.95rem;
+  background:none;border:0;cursor:pointer;padding:6px 0;font-family:inherit}
+.watch .dot{display:grid;place-items:center;width:46px;height:46px;border-radius:50%;border:1.5px solid rgba(255,255,255,.7);
+  transition:background-color var(--t) var(--ease-soft),transform var(--t) var(--ease)}
+.watch .dot svg{width:15px;height:15px;margin-left:3px}
+.watch:hover .dot{background:rgba(255,255,255,.16);transform:scale(1.06)}
+.watch small{display:block;font-weight:500;color:rgba(255,255,255,.7);font-size:.8rem}
+.hero-b.is-playing .hero-b__content,.hero-b.is-playing .hero-b__scrim{opacity:0;pointer-events:none;transition:opacity .3s}
+.hero-b .yt iframe{z-index:3}
+
+/* ============================================================
+   CHALLENGE SELECTOR on a red ground (B)
+   ============================================================ */
+.g-red .ch-card{background:#fff;border-color:transparent;box-shadow:0 1px 0 rgba(0,0,0,.08)}
+.g-red .ch-card:hover{border-color:var(--color-accent);box-shadow:0 14px 30px rgba(40,8,8,.28)}
+.g-red .ch-card .ch-problem{color:var(--color-text)}
+.g-red .ch-card .ch-route{color:var(--color-text-muted)}
+.g-red .ch-foot{color:rgba(255,255,255,.84)}
+.g-red .ch-foot a{color:#fff;border-bottom-color:var(--color-accent)}
+.sel-head{display:grid;grid-template-columns:1fr 1fr;gap:var(--s-12);align-items:end;margin-bottom:var(--s-12)}
+.sel-head .lead{margin:0}
+
+/* ============================================================
+   RILEY'S STORY — layered imagery (depth)
+   ============================================================ */
+.layered{position:relative;padding:0 0 12% 0}
+.layered .l-main{position:relative;aspect-ratio:4/5;width:78%;border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--shadow-xl)}
+.layered .l-float{position:absolute;right:0;bottom:0;width:46%;aspect-ratio:1;border-radius:var(--r-md);overflow:hidden;
+  border:6px solid var(--color-bg);box-shadow:0 24px 54px rgba(20,14,10,.32)}
+.g-dark .layered .l-float{border-color:var(--ink-deep-2)}
+.layered .l-tag{position:absolute;left:14px;top:14px;z-index:2;background:rgba(33,27,23,.78);color:#fff;font-size:.72rem;font-weight:600;
+  letter-spacing:.06em;text-transform:uppercase;padding:7px 12px;border-radius:var(--r-xl)}
+.story-u{display:grid;grid-template-columns:1fr 1fr;gap:clamp(48px,6vw,112px);align-items:center}
+.story-u .tiles{margin-top:var(--s-12)}
+.g-dark .tile{background:rgba(246,241,232,.05);border-color:var(--line-dark);color:var(--on-dark);box-shadow:none}
+.g-dark .tile:hover{border-color:var(--color-accent);background:rgba(246,241,232,.09)}
+.g-dark .tile .tile-label{color:var(--on-dark-mute)}
+.g-dark .tile.primary{background:var(--color-primary);border-color:var(--color-primary)}
+
+/* ============================================================
+   SIGNATURE — shoe schematic draws itself, resolves into CRS
+   ============================================================ */
+.sig{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(40px,6vw,112px);align-items:center}
+.sig-plate{position:relative;background:var(--color-surface);border-radius:var(--r-lg);padding:clamp(16px,2.4vw,36px);box-shadow:var(--shadow-lg)}
+.sig-plate .proof-chip{position:absolute;left:-7%;top:-6%;width:27%;border-radius:var(--r-md);overflow:hidden;
+  border:5px solid var(--color-surface);box-shadow:0 18px 40px rgba(45,45,45,.22);aspect-ratio:3/4}
+.sig-plate .proof-chip span{position:absolute;left:8px;bottom:8px;z-index:2;background:rgba(33,27,23,.8);color:#fff;font-size:.66rem;
+  font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:5px 8px;border-radius:var(--r-xl)}
+.mech .m-mark{font-size:54px;font-weight:700;letter-spacing:.04em;fill:var(--color-primary)}
+.sig .body p+p{margin-top:var(--s-4)}
+
+/* centred, dark version (B) */
+.sig-center{text-align:center}
+.sig-center .statement{margin:0 auto}
+.sig-center .statement-sub{margin-inline:auto}
+.sig-center .mech{max-width:520px;margin:var(--s-12) auto 0}
+.g-dark .mech .m-shoe{fill:rgba(246,241,232,.05);stroke:var(--color-cream)}
+.g-dark .mech .m-holes circle{stroke:var(--color-cream)}
+.g-dark .mech .m-axis{stroke:var(--color-accent)}
+.g-dark .mech .m-axis-label{fill:var(--color-accent)}
+.g-dark .mech .m-flex{stroke:var(--on-dark)}
+.g-dark .mech .m-arrow{fill:var(--on-dark)}
+.g-dark .mech .m-lead{stroke:rgba(246,241,232,.4)}
+.g-dark .mech text{fill:var(--on-dark)}
+.g-dark .mech text.m-sub{fill:var(--on-dark-mute)}
+.g-dark .mech .m-mark{fill:#fff}
+.g-dark .mech-cap{color:var(--on-dark-mute);margin-inline:auto}
+
+@supports (animation-timeline: view()){
+  @media (prefers-reduced-motion: no-preference){
+    .mech .m-mark{opacity:0;animation:m-mark-in linear both;animation-timeline:view();animation-range:cover 42% cover 50%}
+    /* homepage: the whole draw finishes while the diagram sits mid-screen
+       (kit LESSONS #1 — complete by the time the centre reaches centre) */
+    :is(.sig,.sig-center) .mech .m-shoe{animation-range:entry 10% cover 30%,cover 24% cover 34%}
+    :is(.sig,.sig-center) .mech .m-holes{animation-range:cover 26% cover 34%}
+    :is(.sig,.sig-center) .mech .m-axis-g{animation-range:cover 30% cover 38%}
+    :is(.sig,.sig-center) .mech .m-flex-g{animation-range:cover 34% cover 42%}
+    :is(.sig,.sig-center) .mech .m-note{animation-range:cover 36% cover 46%}
+    /* gentle depth on floating images — translate, not transform */
+    .l-float,.float-card,.proof-chip{animation:u-drift linear both;animation-timeline:view();animation-range:cover 0% cover 100%}
+  }
+}
+@keyframes m-mark-in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@keyframes u-drift{from{translate:0 28px}to{translate:0 -28px}}
+html.state-final .mech *,html.state-final .l-float,html.state-final .float-card,html.state-final .proof-chip{animation:none!important;opacity:1!important;stroke-dashoffset:0!important;fill-opacity:1!important;translate:none!important}
+
+/* ============================================================
+   PROOF — Klyde on deep red (A)
+   ============================================================ */
+.g-deepred .spot-img{box-shadow:0 22px 48px rgba(20,4,4,.4)}
+.proof-head{display:grid;grid-template-columns:1fr auto;gap:var(--s-8);align-items:end;margin-bottom:var(--s-12)}
+.proof-head .statement{max-width:16ch}
+
+/* ============================================================
+   TESTIMONIAL — typographic exhale
+   ============================================================ */
+.big-quote{max-width:980px}
+.big-quote blockquote{font-size:clamp(2rem,4.2vw,3.5rem);line-height:1.12;font-weight:300;letter-spacing:-.025em;max-width:20ch}
+.big-quote blockquote strong{font-weight:700;color:var(--color-primary)}
+.big-quote cite{margin-top:var(--s-8);font-size:1.02rem}
+.big-quote .q-rule{width:72px;height:3px;background:var(--color-primary);margin-bottom:var(--s-8)}
+
+/* ============================================================
+   CLOSE — Join the Heard, drenched red
+   ============================================================ */
+.close-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(48px,6vw,112px);align-items:center}
+.close-grid h2{font-size:clamp(2.6rem,5.4vw,4.6rem);font-weight:700;letter-spacing:-.03em;line-height:1;margin-bottom:var(--s-6)}
+.g-red .field label{color:#fff}
+.g-red .field input{border-color:transparent;background:#fff}
+.g-red .privacy{color:rgba(255,255,255,.78)}
+.g-red .form{background:rgba(0,0,0,.12);padding:clamp(24px,3vw,40px);border-radius:var(--r-lg);max-width:none}
+
+/* value prop, asymmetric (B) */
+.value-left{max-width:none;display:grid;grid-template-columns:1.3fr .7fr;gap:var(--s-16);align-items:end}
+.value-left .statement{max-width:22ch}
+.value-left p{margin:0}
+
+/* hairline between two ivory sections */
+.rule-top{border-top:1px solid var(--color-border)}
+
+/* ---------- responsive ---------- */
+@media (max-width:860px){
+  .hero-a .hero-grid,.story-u,.sig,.close-grid,.sel-head,.proof-head,.value-left{grid-template-columns:1fr}
+  .float-card{left:auto;right:4%;bottom:-6%;width:46%}
+  .hero-a .media-wrap{margin-bottom:var(--s-12)}
+  .hero-b{min-height:auto;align-items:flex-end;padding:56vw 0 var(--s-12)}
+  .hero-b__media{bottom:auto;height:72vw}
+  .hero-b__scrim{bottom:auto;height:72vw;background:linear-gradient(180deg,rgba(33,27,23,0) 40%,var(--ink-deep) 100%)}
+  .hero-b__copy{margin-left:0;max-width:none}
+  .sig-plate .proof-chip{left:-2%;top:-4%;width:26%}
+  .sig-plate .proof-chip span{display:none}
+  .layered{padding-bottom:16%}
+  .proof-head{align-items:start}
+}
+
+/* ============================================================
+   ROUND 2 — testimonials row, buy section, mobile Shop button
+   ============================================================ */
+
+/* ON FILM — testimonial videos. Click-to-play (never autoplay a talking
+   head). Last card is the conversion card in the same frame. */
+.film-row{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--s-6);align-items:stretch}
+.film-card{background:var(--color-surface);border-radius:var(--r-md);overflow:hidden;border:1px solid var(--color-border);
+  transition:transform var(--t) var(--ease),box-shadow var(--t) var(--ease-soft)}
+.film-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+.film-media{position:relative;aspect-ratio:4/5;background:var(--ink-deep)}
+.film-media .ph-img{transition:transform .6s var(--ease)}
+.film-card:hover .film-media .ph-img{transform:scale(1.04)}
+.film-media::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,transparent 55%,rgba(33,27,23,.55))}
+.film-media .play{width:62px;height:62px;z-index:2}.film-media .play svg{width:22px;height:22px}
+.film-body{padding:var(--s-5) var(--s-6) var(--s-6)}
+.film-k{font-size:.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--color-text-muted);margin-bottom:6px}
+.film-body h4{font-size:1.02rem;line-height:1.35}
+.film-cta{display:flex;flex-direction:column;justify-content:flex-end;gap:var(--s-4);padding:var(--s-8) var(--s-6);
+  border-radius:var(--r-md);background:var(--color-primary);color:#fff;min-height:100%;
+  transition:transform var(--t) var(--ease),background-color var(--t) var(--ease-soft)}
+.film-cta:hover{transform:translateY(-4px);background:var(--color-primary-dark)}
+.film-cta .fc-k{font-size:.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.75)}
+.film-cta .fc-h{font-size:clamp(1.5rem,2vw,1.9rem);font-weight:700;line-height:1.12;letter-spacing:-.02em}
+.film-cta .btn{align-self:flex-start}
+.film-cta .fc-s{font-size:.86rem;color:rgba(255,255,255,.8)}
+
+/* BUY — make the shop moment unmissable */
+.buy-head{display:grid;grid-template-columns:1.3fr .7fr;gap:var(--s-12);align-items:end;margin-bottom:var(--s-12)}
+.buy-head .lead{margin:0}
+.buy-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--s-6)}
+.buy-panel{display:grid;grid-template-rows:auto 1fr;background:var(--color-surface);border-radius:var(--r-lg);overflow:hidden;
+  box-shadow:var(--shadow-md);transition:transform var(--t) var(--ease),box-shadow var(--t) var(--ease-soft);scroll-margin-top:96px}
+.buy-panel:hover{transform:translateY(-4px);box-shadow:var(--shadow-xl)}
+.buy-panel:target{outline:3px solid var(--color-primary);outline-offset:4px}
+.buy-img{position:relative;aspect-ratio:16/10;background:var(--color-cream-light)}
+.buy-img .ph-img{transition:transform .7s var(--ease)}
+.buy-panel:hover .buy-img .ph-img{transform:scale(1.035)}
+.buy-body{padding:clamp(24px,3vw,40px);display:flex;flex-direction:column}
+.buy-title{font-size:clamp(1.45rem,2.2vw,1.95rem);font-weight:700;letter-spacing:-.02em;line-height:1.15;margin-bottom:var(--s-5)}
+.buy-for{list-style:none;display:flex;flex-wrap:wrap;gap:8px;margin-bottom:var(--s-6)}
+.buy-for li{font-size:.86rem;font-weight:500;padding:6px 12px;border-radius:var(--r-xl);background:var(--color-cream-light);color:var(--color-text)}
+.buy-price{font-size:2rem;font-weight:700;color:var(--color-primary);letter-spacing:-.02em;margin-top:auto;margin-bottom:var(--s-5)}
+.buy-price small{display:block;font-size:.86rem;font-weight:500;color:var(--color-text-muted);letter-spacing:0;margin-top:2px}
+.buy-ctas{display:flex;align-items:center;gap:var(--s-6);flex-wrap:wrap}
+.buy-trust{list-style:none;display:flex;flex-wrap:wrap;justify-content:center;gap:10px 32px;margin-top:var(--s-12);
+  font-size:.92rem;font-weight:500;color:var(--color-text)}
+.buy-trust li{display:flex;align-items:center;gap:10px}
+.buy-trust li::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--color-primary)}
+.buy-trust a{color:var(--color-primary);font-weight:600}
+
+/* MOBILE BAR — Call / Text / Shop */
+.mobile-bar a.mb-shop{background:var(--color-accent);color:#2A2014}
+
+/* staggered entrance for rows (cap the stagger — kit LESSONS #12) */
+@supports (animation-timeline: view()){
+  @media (prefers-reduced-motion: no-preference){
+    .film-card,.film-cta,.buy-panel{animation:rise-in linear both;animation-timeline:view();animation-range:entry 5% entry 55%}
+  }
+}
+
+/* other pages pick up the shell: centred heads stay centred under the h2 cap */
+.u-page .sec-head.center h2,.u-page .value h2{margin-inline:auto}
+
+@media (max-width:1024px){
+  .film-row{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:860px){
+  .buy-head,.buy-grid{grid-template-columns:1fr}
+  .buy-trust{justify-content:flex-start;flex-direction:column;gap:10px}
+  .film-row{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:var(--s-4);
+    margin-inline:calc(var(--s-6) * -1);padding:0 var(--s-6) var(--s-4);-webkit-overflow-scrolling:touch}
+  .film-card,.film-cta{flex:0 0 76%;scroll-snap-align:start}
+  .film-media{aspect-ratio:4/5}
+  .mobile-bar a{font-size:.9rem;padding:15px 8px;gap:6px}
+}
+.film-media .ph-img.yt-hq{top:-16%;height:132%}
+/* product shots are near-square studio photos: show the whole shoe */
+.buy-img{aspect-ratio:4/3;background:#fff}
+.buy-img .ph-img{object-fit:contain;padding:clamp(16px,2.4vw,32px)}
+
+/* ============================================================
+   ROUND 3 — HERO OPTIONS (shared film hero)
+   .hero-loop  = ambient silent loop, poster-first (poster IS the hero
+                 if the video is missing, slow, or reduced-motion)
+   #heroFilm   = click-to-play origin story, opens over the hero
+   ============================================================ */
+.hero-film{position:relative;isolation:isolate;overflow:hidden;background:var(--ink-deep);color:#fff}
+.hero-loop{position:absolute;inset:0;z-index:0;background:var(--ink-deep)}
+.hero-loop img,.hero-loop video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hero-loop video{opacity:0;transition:opacity 1.2s var(--ease-soft)}
+.hero-loop video.is-on{opacity:1}
+.hero-film .film-yt{position:absolute;inset:0;z-index:0}
+.hero-film .film-yt iframe{z-index:6}
+.hero-film .eyebrow{color:var(--color-cream)}
+.hero-film .lead{color:rgba(255,255,255,.88)}
+.hero-film .btn-secondary{color:#fff;border-color:rgba(255,255,255,.6)}
+.hero-film .btn-secondary:hover{background:#fff;color:var(--color-primary-dark)}
+.hero-h1{font-size:clamp(2.6rem,5.8vw,5.5rem);line-height:1;letter-spacing:-.035em;font-weight:300;color:#fff}
+.hero-h1 .hv{display:block;font-weight:700}
+.film-close{position:absolute;top:20px;right:20px;z-index:8;display:none;align-items:center;gap:8px;
+  background:rgba(33,27,23,.82);color:#fff;border:1px solid rgba(255,255,255,.3);border-radius:var(--r-xl);
+  padding:10px 16px;font:600 .85rem/1 'Work Sans',system-ui,sans-serif;cursor:pointer;min-height:44px}
+.hero-film.is-playing .film-close{display:inline-flex}
+.hero-film.is-playing .hf-scrim,.hero-film.is-playing .hf-content,.hero-film.is-playing .hf-meta{opacity:0;pointer-events:none;transition:opacity .3s}
+
+/* story card — the framed film inset (editorial film framing) */
+.story-card{position:relative;display:block;width:100%;aspect-ratio:16/9;border-radius:10px;overflow:hidden;cursor:pointer;
+  border:1px solid rgba(255,255,255,.28);background:#000;padding:0;box-shadow:0 24px 60px rgba(0,0,0,.45);
+  transition:transform var(--t) var(--ease),border-color var(--t) var(--ease-soft)}
+.story-card:hover{transform:translateY(-3px);border-color:rgba(255,255,255,.6)}
+.story-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .7s var(--ease)}
+.story-card:hover img{transform:scale(1.04)}
+.story-card::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 35%,rgba(0,0,0,.72))}
+.story-card .sc-play{position:absolute;left:16px;bottom:16px;z-index:2;display:flex;align-items:center;gap:12px;text-align:left;color:#fff}
+.story-card .sc-dot{display:grid;place-items:center;width:44px;height:44px;border-radius:50%;background:var(--color-accent);color:#2A2014;flex:none}
+.story-card .sc-dot svg{width:15px;height:15px;margin-left:3px}
+.story-card b{display:block;font-size:.95rem;font-weight:700}
+.story-card small{display:block;font-size:.78rem;color:rgba(255,255,255,.78);font-weight:500}
+.story-card .sc-tag{position:absolute;left:14px;top:14px;z-index:2;font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  background:rgba(0,0,0,.55);padding:6px 10px;border-radius:var(--r-xl)}
+
+/* ---- OPTION 1 · FILM TITLE — full-bleed loop, title bottom-left ---- */
+.hf-title{min-height:clamp(620px,calc(100svh - 74px),920px);display:flex;align-items:flex-end}
+.hf-title .hf-scrim{position:absolute;inset:0;z-index:1;pointer-events:none;background:
+  linear-gradient(0deg,rgba(26,21,18,.94) 0%,rgba(26,21,18,.7) 30%,rgba(26,21,18,.18) 62%,rgba(26,21,18,0) 80%),
+  linear-gradient(90deg,rgba(26,21,18,.55) 0%,rgba(26,21,18,0) 58%)}
+.hf-title .hf-content{position:relative;z-index:2;width:100%;padding-bottom:clamp(40px,5.5vw,72px)}
+.hf-title .hf-grid{display:grid;grid-template-columns:1fr 340px;gap:clamp(32px,5vw,80px);align-items:end}
+.hf-title .hero-h1{margin:var(--s-4) 0 var(--s-6);max-width:13em}
+.hf-title .hf-row{display:flex;align-items:center;gap:var(--s-8);flex-wrap:wrap}
+.hf-title .hf-row .lead{max-width:34ch;margin:0}
+.hf-title .hero-ctas{flex-wrap:nowrap}
+
+/* ---- OPTION 2 · LETTERBOX — title on dark, wide film frame bleeds right ---- */
+.hf-letter{padding:clamp(48px,6vw,88px) 0 clamp(56px,6vw,96px)}
+.hf-letter .hf-content{position:relative;z-index:2}
+.hf-letter .hero-h1{margin:var(--s-4) 0 var(--s-8);font-size:clamp(2.6rem,6.4vw,6rem)}
+.hf-letter .hf-row{display:flex;justify-content:space-between;align-items:flex-end;gap:var(--s-8);flex-wrap:wrap}
+.hf-letter .hf-row .lead{max-width:40ch;margin:0}
+.hf-frame{position:relative;margin-top:clamp(36px,4.5vw,64px);
+  margin-left:max(24px,calc((100vw - var(--container)) / 2 + 24px));
+  aspect-ratio:21/9;border-radius:12px 0 0 12px;overflow:hidden;isolation:isolate;background:#000}
+.hf-frame .hero-loop{z-index:0}
+.hf-frame .film-yt{z-index:0}
+.hf-frame .hf-meta{position:absolute;left:clamp(16px,2.4vw,32px);bottom:clamp(16px,2.4vw,32px);z-index:3;width:min(320px,42%)}
+.hf-frame::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(90deg,rgba(0,0,0,.45),rgba(0,0,0,0) 45%)}
+.hf-letter.is-playing .hf-frame::after{opacity:0}
+
+@media (max-width:860px){
+  .hf-title{min-height:calc(100svh - 74px)}
+  .hf-title .hf-grid{grid-template-columns:1fr}
+  .hf-title .hf-row{flex-direction:column;align-items:stretch;gap:var(--s-6)}
+  .hf-title .hero-ctas{flex-wrap:wrap}
+  .hf-title .story-card{aspect-ratio:auto;height:72px;border-radius:var(--r-md)}
+  .hf-title .story-card img{object-position:60% 30%}
+  .hf-title .story-card .sc-tag{display:none}
+  .hf-title .story-card .sc-play{left:12px;bottom:auto;top:50%;transform:translateY(-50%)}
+  .hf-letter .hf-row{flex-direction:column;align-items:stretch}
+  .hf-frame{margin-left:0;border-radius:0;aspect-ratio:16/11}
+  .hf-frame .hf-meta{width:auto;right:16px}
+  .hf-frame .story-card{aspect-ratio:auto;height:72px}
+  .hf-frame .story-card .sc-tag{display:none}
+  .hf-frame .story-card .sc-play{bottom:auto;top:50%;transform:translateY(-50%)}
+}
+@media (prefers-reduced-motion:reduce){ .hero-loop video{display:none} }
+.hero-film .film-yt{pointer-events:none}.hero-film.is-playing .film-yt{pointer-events:auto}
+/* round 3 fixes: title runs the full width; letterbox shows more film above the fold */
+.hf-title .hero-h1{max-width:none}
+.hf-letter{padding-top:clamp(32px,4vw,56px)}
+.hf-letter .hero-h1{margin:var(--s-3) 0 var(--s-6)}
+.hf-letter .hf-frame{margin-top:clamp(28px,3vw,44px)}
+.story-card{color:#fff;font-family:inherit}
+.film-close{right:auto;left:20px}
+
+/* ============================================================
+   ROUND 4 — hero slides + looping story box
+   ============================================================ */
+/* slides: base state = first still only (no-JS, reduced motion,
+   screenshots); the crossfade + slow push-in is an enhancement */
+.hero-slides img{opacity:0}
+.hero-slides img:first-child{opacity:1}
+@media (prefers-reduced-motion: no-preference){
+  .hero-slides img{animation:hs-cycle 35s linear infinite both}
+  .hero-slides img:nth-child(1){animation-delay:-1s}
+  .hero-slides img:nth-child(2){animation-delay:6s}
+  .hero-slides img:nth-child(3){animation-delay:13s}
+  .hero-slides img:nth-child(4){animation-delay:20s}
+  .hero-slides img:nth-child(5){animation-delay:27s}
+}
+@keyframes hs-cycle{
+  0%  {opacity:0;transform:scale(1.0)}
+  4%  {opacity:1}
+  20% {opacity:1}
+  24% {opacity:0;transform:scale(1.07)}
+  100%{opacity:0;transform:scale(1.07)}
+}
+html.state-final .hero-slides img{animation:none!important}
+.hero-film.is-playing .hero-slides img{animation-play-state:paused}
+
+/* story box: silent loop over the poster; the poster is the fallback */
+.story-card .sc-loop{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+.story-card .sc-tag,.story-card .sc-play{z-index:2}
+@media (prefers-reduced-motion: reduce){ .story-card .sc-loop{display:none} }
+html.state-final .story-card .sc-loop{display:none}
+/* slides vary in brightness (sunset shot is bright): deeper, taller scrim */
+.hf-title .hf-scrim{background:
+  linear-gradient(0deg,rgba(26,21,18,.94) 0%,rgba(26,21,18,.78) 32%,rgba(26,21,18,.42) 62%,rgba(26,21,18,.2) 100%),
+  linear-gradient(90deg,rgba(26,21,18,.6) 0%,rgba(26,21,18,0) 62%)}
+@media (max-width:860px){
+  .hf-title .hf-scrim{background:linear-gradient(0deg,rgba(26,21,18,.95) 0%,rgba(26,21,18,.8) 45%,rgba(26,21,18,.55) 75%,rgba(26,21,18,.35) 100%)}
+}
+/* phones: the story box is a real video card, not a strip (Chris 2026-10-23) */
+@media (max-width:860px){
+  .hf-title .story-card{aspect-ratio:16/9;height:auto;border-radius:10px}
+  .hf-title .story-card .sc-tag{display:block}
+  .hf-title .story-card .sc-play{top:auto;bottom:14px;left:14px;transform:none}
+  .hf-title .hf-meta{margin-top:var(--s-2)}
+}
+
+/* ============================================================
+   ROUND 6 — no cut-off subjects in the hero (Chris 2026-10-23)
+   Wide screens: hero keeps close to the 16:9 frame instead of a
+   short letterbox, so tops and bottoms aren't sliced off.
+   Phones/tablets: the still sits ABOVE the copy at full 16:9,
+   never cropped to a portrait sliver.
+   ============================================================ */
+.hf-title{min-height:max(620px,min(calc(100svh - 74px),56.25vw))}
+#help{scroll-margin-top:74px}
+@media (max-width:860px){
+  .hf-title{display:block;min-height:0;background:var(--ink-deep)}
+  .hf-title .hero-loop{position:relative;inset:auto;aspect-ratio:16/9;width:100%}
+  .hf-title .hf-scrim{inset:auto 0 auto 0;top:0;height:calc(100vw * 9 / 16);
+    background:linear-gradient(180deg,rgba(26,21,18,0) 55%,var(--ink-deep) 100%)}
+  .hf-title .hf-content{padding-top:var(--s-6);padding-bottom:var(--s-12)}
+  .hf-title .hero-slides img{object-position:50% 50%!important}
+}
+
+/* story box play button: CRS red + a slow pulse so it reads as "press play"
+   (Chris 2026-10-23). Ring is a pseudo-element, so the button never moves. */
+.story-card .sc-dot{background:var(--color-primary);color:#fff;position:relative}
+.story-card .sc-dot::after{content:"";position:absolute;inset:0;border-radius:50%;box-shadow:0 0 0 0 rgba(165,42,42,.7)}
+.story-card:hover .sc-dot{background:var(--color-primary-dark)}
+@media (prefers-reduced-motion: no-preference){
+  .story-card .sc-dot::after{animation:sc-pulse 2.2s cubic-bezier(.2,.6,.3,1) infinite}
+}
+@keyframes sc-pulse{
+  0%  {box-shadow:0 0 0 0 rgba(165,42,42,.75)}
+  70% {box-shadow:0 0 0 16px rgba(165,42,42,0)}
+  100%{box-shadow:0 0 0 0 rgba(165,42,42,0)}
+}
+html.state-final .story-card .sc-dot::after{animation:none}
+.story-card .sc-dot{width:48px;height:48px}
