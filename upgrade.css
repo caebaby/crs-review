@@ -483,3 +483,18 @@ html.state-final .story-card .sc-loop{display:none}
 }
 html.state-final .story-card .sc-dot::after{animation:none}
 .story-card .sc-dot{width:48px;height:48px}
+
+/* ROUND 8 — rotating headline option (C). Both lines share one grid cell so the
+   block keeps the height of the taller line; the first line is the static state. */
+.hl-rot{display:grid}
+.hl-rot>span{grid-area:1/1}
+.hl-rot .hl-b{opacity:0}
+@media (prefers-reduced-motion: no-preference){
+  .hl-rot .hl-a{animation:hl-swap 14s ease-in-out infinite}
+  .hl-rot .hl-b{animation:hl-swap 14s ease-in-out -7s infinite}
+}
+@keyframes hl-swap{0%,44%{opacity:1;transform:none}50%,94%{opacity:0;transform:translateY(-6px)}100%{opacity:1;transform:none}}
+html.state-final .hl-rot .hl-a{animation:none;opacity:1}
+html.state-final .hl-rot .hl-b{animation:none;opacity:0}
+/* rotating lines of different lengths: bottom-align so the shorter one sits on the subhead */
+.hl-rot>span{align-self:end}
