@@ -694,3 +694,6 @@ html.state-final .btn::after{animation:none!important}
 :is(.film-media,.how-media) .play svg{width:20px;height:20px}
 :is(.film-media,.how-media)[role=button]:hover .play{background:var(--color-primary-dark);color:#fff}
 .how-media .play{width:68px;height:68px;inset:auto auto 20px 20px}
+.spot-img.yt .play{inset:auto auto 20px 20px;margin:0;width:68px;height:68px;background:var(--color-primary);color:#fff}
+.spot-img.yt:hover .play{background:var(--color-primary-dark);color:#fff}
+a.spot-img{display:block}
