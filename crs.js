@@ -56,6 +56,18 @@
     }, { threshold: 0.15 }).observe(loop);
   }
 
+  // product shots tilt toward the cursor (fine pointer + motion allowed only)
+  if (matchMedia('(hover: hover) and (pointer: fine)').matches && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.querySelectorAll('.buy-img').forEach(function (box) {
+      var img = box.querySelector('.ph-img'); if (!img) return;
+      box.addEventListener('pointermove', function (e) {
+        var r = box.getBoundingClientRect(), x = (e.clientX - r.left) / r.width - .5, y = (e.clientY - r.top) / r.height - .5;
+        img.style.setProperty('--ry', (x * 10).toFixed(2) + 'deg'); img.style.setProperty('--rx', (-y * 8).toFixed(2) + 'deg');
+      });
+      box.addEventListener('pointerleave', function () { img.style.setProperty('--ry', '0deg'); img.style.setProperty('--rx', '0deg'); });
+    });
+  }
+
   document.addEventListener('keydown', function (e) {
     if ((e.key === 'Enter' || e.key === ' ') && e.target.classList && e.target.classList.contains('yt')) {
       e.preventDefault(); playYT(e.target);

@@ -498,3 +498,185 @@ html.state-final .hl-rot .hl-a{animation:none;opacity:1}
 html.state-final .hl-rot .hl-b{animation:none;opacity:0}
 /* rotating lines of different lengths: bottom-align so the shorter one sits on the subhead */
 .hl-rot>span{align-self:end}
+
+/* ============================================================
+   ROUND 9 — motion pass (site-wide; every page loads this file)
+   Rules: base state fully visible; motion only under no-preference
+   (+ @supports for scroll-driven); transform/opacity/clip only.
+   ============================================================ */
+
+/* 1. Big statements wipe up into place as they enter (line-mask feel) */
+@supports (animation-timeline: view()){
+  @media (prefers-reduced-motion: no-preference){
+    .statement,.close-grid h2,.big-quote blockquote,.hero-h1:not(.hl-rot){
+      animation:u-wipe linear both;animation-timeline:view();animation-range:entry 0% entry 70%}
+    /* 2. Problem selector: cards arrive in a short capped stagger */
+    .ch-grid .ch-card{animation:u-rise linear both;animation-timeline:view();animation-range:entry 0% entry 60%}
+    .ch-grid .ch-card:nth-child(2){animation-range:entry 4% entry 64%}
+    .ch-grid .ch-card:nth-child(3){animation-range:entry 8% entry 68%}
+    .ch-grid .ch-card:nth-child(4){animation-range:entry 12% entry 72%}
+    .ch-grid .ch-card:nth-child(5){animation-range:entry 16% entry 76%}
+    .ch-grid .ch-card:nth-child(6){animation-range:entry 20% entry 80%}
+    /* 3. Proof photos open like a curtain */
+    .spot-grid .spot-img{animation:u-curtain linear both;animation-timeline:view();animation-range:entry 5% cover 35%}
+  }
+}
+@keyframes u-wipe{from{clip-path:inset(0 0 100% 0);transform:translateY(18px)}to{clip-path:inset(0 0 -10% 0);transform:none}}
+@keyframes u-rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+@keyframes u-curtain{from{clip-path:inset(0 50% 0 50% round 12px)}to{clip-path:inset(0 0 0 0 round 12px)}}
+
+/* problem cards: the route arrow nudges toward the answer */
+.ch-card .ch-route{display:inline-block;transition:transform var(--t) var(--ease)}
+.ch-card:hover .ch-route,.ch-card:focus-visible .ch-route{transform:translateX(6px)}
+
+/* 4. Conversion sheen: a soft light sweep across the two money buttons */
+.hero-ctas .btn-primary,.buy-ctas .btn-primary,.film-cta .btn{position:relative;overflow:hidden;isolation:isolate}
+.hero-ctas .btn-primary::after,.buy-ctas .btn-primary::after,.film-cta .btn::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
+  background:linear-gradient(105deg,transparent 35%,rgba(255,255,255,.55) 50%,transparent 65%);transform:translateX(-120%)}
+@media (prefers-reduced-motion: no-preference){
+  .hero-ctas .btn-primary::after,.buy-ctas .btn-primary::after,.film-cta .btn::after{animation:u-sheen 6s ease-in-out 1.5s infinite}
+}
+@keyframes u-sheen{0%,78%{transform:translateX(-120%)}100%{transform:translateX(120%)}}
+
+/* 5. Product shots tilt toward the cursor (JS sets --rx/--ry; desktop only) */
+.buy-img{perspective:900px}
+.buy-img .ph-img{transform:rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg)) scale(var(--ts,1));transition:transform .5s var(--ease)}
+.buy-panel:hover .buy-img .ph-img{--ts:1.04}
+
+html.state-final .statement,html.state-final .close-grid h2,html.state-final .big-quote blockquote,html.state-final .hero-h1,
+html.state-final .ch-card,html.state-final .spot-img{animation:none!important;clip-path:none!important;opacity:1!important;transform:none!important}
+html.state-final .btn::after{animation:none!important}
+
+/* ============================================================
+   ROUND 10 — interior pages in the homepage language
+   ============================================================ */
+/* page hero: a film still behind the title, same scrim logic as home */
+.page-film{position:relative;isolation:isolate;overflow:hidden;background:var(--ink-deep);color:#fff;
+  min-height:clamp(440px,62vh,620px);display:flex;align-items:flex-end}
+.page-film .pf-img{position:absolute;inset:0;z-index:0}
+.page-film .pf-img img{width:100%;height:100%;object-fit:cover}
+.page-film .pf-scrim{position:absolute;inset:0;z-index:1;pointer-events:none;background:
+  linear-gradient(0deg,rgba(26,21,18,.94) 0%,rgba(26,21,18,.72) 38%,rgba(26,21,18,.3) 72%,rgba(26,21,18,.15) 100%),
+  linear-gradient(90deg,rgba(26,21,18,.55) 0%,rgba(26,21,18,0) 60%)}
+.page-film .pf-content{position:relative;z-index:2;width:100%;padding-top:clamp(48px,6vw,88px);padding-bottom:clamp(40px,5vw,72px)}
+.page-film .eyebrow{color:var(--color-cream)}
+.page-film h1{font-size:clamp(2.4rem,5vw,4.6rem);line-height:1.02;letter-spacing:-.035em;font-weight:300;color:#fff;max-width:16em}
+.page-film h1 .hv{display:block;font-weight:700}
+.page-film .lead{color:rgba(255,255,255,.88);max-width:46ch;margin:var(--s-5) 0 var(--s-8)}
+.page-film .btn-secondary{color:#fff;border-color:rgba(255,255,255,.6)}
+.page-film .btn-secondary:hover{background:#fff;color:var(--color-primary-dark)}
+@media (prefers-reduced-motion: no-preference){
+  .page-film .pf-img img{animation:pf-push 18s ease-out both}
+}
+@keyframes pf-push{from{transform:scale(1.08)}to{transform:scale(1)}}
+@media (max-width:860px){
+  .page-film{display:block;min-height:0}
+  .page-film .pf-img{position:relative;inset:auto;aspect-ratio:16/9}
+  .page-film .pf-scrim{inset:auto 0 auto 0;top:0;height:calc(100vw * 9 / 16);background:linear-gradient(180deg,rgba(26,21,18,0) 55%,var(--ink-deep) 100%)}
+  .page-film .pf-content{padding-top:var(--s-6)}
+  .page-film .pf-img img{animation:none}
+}
+
+/* numbered method rows (apply / process) on dark */
+.method{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(24px,3vw,48px);counter-reset:m}
+.method>div{border-top:1px solid var(--line-dark);padding-top:var(--s-6)}
+.method .m-n{font-size:clamp(3rem,5vw,4.5rem);font-weight:200;line-height:1;color:var(--color-accent);letter-spacing:-.04em;margin-bottom:var(--s-4)}
+.method h3{font-size:1.4rem;font-weight:700;margin-bottom:var(--s-3)}
+.g-ivory .method>div,.g-cream .method>div{border-top-color:var(--color-border)}
+.g-ivory .method .m-n,.g-cream .method .m-n{color:var(--color-primary)}
+@media (max-width:860px){.method{grid-template-columns:1fr}}
+
+/* document cards (PDFs) */
+.docs{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--s-6)}
+.doc{display:flex;gap:var(--s-5);align-items:flex-start;padding:var(--s-6);background:var(--color-surface);border:1px solid var(--color-border);
+  border-radius:var(--r-md);transition:transform var(--t) var(--ease),box-shadow var(--t) var(--ease-soft)}
+.doc:hover{transform:translateY(-3px);box-shadow:var(--shadow-md)}
+.doc .d-ico{flex:none;width:48px;height:60px;border-radius:4px;background:var(--color-cream-light);display:grid;place-items:end center;padding-bottom:8px;
+  font:700 .66rem/1 'Work Sans',sans-serif;letter-spacing:.08em;color:var(--color-primary);border:1px solid var(--color-border)}
+.doc b{display:block;font-size:1.05rem;margin-bottom:4px}
+.doc span{font-size:.9rem;color:var(--color-text-muted)}
+@media (max-width:860px){.docs{grid-template-columns:1fr}}
+
+/* "Needed from CRS" — honest, client-facing gap marker for review rounds */
+.need{display:inline-flex;align-items:center;gap:8px;font-size:.82rem;font-weight:600;color:var(--color-primary-dark);
+  background:#fff4dc;border:1px dashed var(--color-accent-dark);border-radius:var(--r-xl);padding:6px 12px;line-height:1.3}
+.need::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--color-accent-dark);flex:none}
+:is(.g-dark,.g-red,.g-deepred,.page-film) .need{background:rgba(232,176,75,.14);color:#fff;border-color:rgba(232,176,75,.7)}
+
+/* guarantee badge beside buy actions */
+.guarantee{display:flex;align-items:center;gap:var(--s-4);padding:var(--s-5) var(--s-6);border-radius:var(--r-md);background:var(--color-surface);
+  border:1px solid var(--color-border);max-width:560px}
+.guarantee .g-seal{flex:none;width:56px;height:56px;border-radius:50%;display:grid;place-items:center;background:var(--color-primary);color:#fff;
+  font:800 1.05rem/1 'Work Sans',sans-serif;letter-spacing:-.02em}
+.guarantee b{display:block}
+.guarantee span{font-size:.9rem;color:var(--color-text-muted)}
+
+/* page close: the same drenched red ask on every page */
+.page-close{display:grid;grid-template-columns:1.2fr auto;gap:var(--s-8);align-items:center}
+.page-close h2{font-size:clamp(2.2rem,4.4vw,3.8rem);font-weight:700;letter-spacing:-.03em;line-height:1.02;margin:0}
+.page-close .ctas{display:flex;gap:var(--s-4);flex-wrap:wrap}
+@media (max-width:860px){.page-close{grid-template-columns:1fr}}
+
+/* ORDER BUILDER (shop) — pick line, size, pairs. Native radios, CSS states. */
+.order-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--s-6)}
+.order-card{background:var(--color-surface);border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--shadow-md);display:grid;grid-template-rows:auto 1fr}
+.order-card .buy-img{aspect-ratio:16/10}
+.order-body{padding:clamp(24px,3vw,36px);display:flex;flex-direction:column;gap:var(--s-5)}
+.order-body h3{font-size:clamp(1.5rem,2.2vw,2rem);font-weight:700;letter-spacing:-.02em}
+.opt-label{font-size:.78rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--color-text-muted);margin-bottom:var(--s-2)}
+.sizes{display:flex;flex-wrap:wrap;gap:8px;border:0;padding:0;margin:0}
+.sizes input{position:absolute;opacity:0;pointer-events:none}
+.sizes label{min-width:56px;min-height:44px;display:grid;place-items:center;padding:0 14px;border:1.5px solid var(--color-border);border-radius:var(--r-sm);
+  font-weight:600;cursor:pointer;transition:border-color var(--t-fast),background-color var(--t-fast),color var(--t-fast)}
+.sizes label:hover{border-color:var(--color-primary)}
+.sizes input:checked+label{background:var(--color-primary);border-color:var(--color-primary);color:#fff}
+.sizes input:focus-visible+label{outline:3px solid var(--color-accent);outline-offset:2px}
+.qty{display:inline-flex;align-items:center;border:1.5px solid var(--color-border);border-radius:var(--r-sm)}
+.qty button{width:44px;height:44px;border:0;background:none;font-size:1.2rem;cursor:pointer;color:var(--color-text)}
+.qty output{min-width:3ch;text-align:center;font-weight:700}
+.order-foot{display:flex;align-items:center;justify-content:space-between;gap:var(--s-4);flex-wrap:wrap;margin-top:auto;padding-top:var(--s-4);border-top:1px solid var(--color-border)}
+.order-foot .buy-price{margin:0;font-size:1.7rem}
+.order-trust{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s-6);margin-top:var(--s-12)}
+.order-trust>div{display:flex;gap:var(--s-4);align-items:flex-start}
+.order-trust .ot-i{flex:none;width:40px;height:40px;border-radius:50%;background:var(--color-primary);color:#fff;display:grid;place-items:center;font-weight:800;font-size:.9rem}
+.order-trust b{display:block;margin-bottom:2px}
+.order-trust span{font-size:.92rem;color:var(--color-text-muted)}
+.cart-toast{position:fixed;left:50%;bottom:84px;z-index:60;transform:translate(-50%,20px);opacity:0;pointer-events:none;
+  background:var(--ink-deep);color:#fff;padding:14px 20px;border-radius:var(--r-md);box-shadow:var(--shadow-xl);font-weight:600;font-size:.95rem;
+  transition:opacity .3s,transform .3s var(--ease);max-width:min(92vw,520px)}
+.cart-toast.on{opacity:1;transform:translate(-50%,0)}
+.cart-toast small{display:block;font-weight:500;color:rgba(255,255,255,.7);margin-top:2px}
+.hinds{display:flex;justify-content:space-between;align-items:center;gap:var(--s-6);flex-wrap:wrap;margin-top:var(--s-6);padding:var(--s-6) var(--s-8);
+  border-radius:var(--r-lg);background:var(--color-surface);border:1px dashed var(--color-accent-dark)}
+@media (max-width:860px){.order-grid,.order-trust{grid-template-columns:1fr}}
+
+/* REVIEWS — every story ends in a buy action */
+.film-card .film-buy{display:inline-flex;align-items:center;gap:6px;margin-top:var(--s-3);font-size:.88rem;font-weight:700;color:var(--color-primary)}
+.film-card .film-buy svg{width:15px;height:15px;transition:transform var(--t) var(--ease)}
+.film-card:hover .film-buy svg{transform:translateX(4px)}
+.film-row.three{grid-template-columns:repeat(3,1fr)}
+.story-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s-6)}
+.story-card2{background:var(--color-surface);border-radius:var(--r-md);overflow:hidden;border:1px solid var(--color-border);display:flex;flex-direction:column}
+.story-card2 .sc2-img{position:relative;aspect-ratio:4/3}
+.story-card2 .sc2-body{padding:var(--s-6);display:flex;flex-direction:column;gap:var(--s-3);flex:1}
+.story-card2 h3{font-size:1.2rem;font-weight:700;line-height:1.25}
+.story-card2 .who{font-size:.9rem;color:var(--color-text-muted)}
+.story-card2 .sc2-foot{margin-top:auto;padding-top:var(--s-4);border-top:1px solid var(--color-border);display:flex;justify-content:space-between;gap:var(--s-4);flex-wrap:wrap}
+.story-card2 .sc2-foot a{font-size:.88rem;font-weight:700;color:var(--color-primary)}
+.vets{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,5vw,80px)}
+.vets blockquote{font-size:clamp(1.5rem,2.4vw,2.1rem);font-weight:300;line-height:1.25;letter-spacing:-.015em;max-width:none}
+.vets blockquote strong{font-weight:700}
+@media (max-width:1024px){.film-row.three,.story-cards{grid-template-columns:1fr 1fr}}
+@media (max-width:860px){.story-cards,.vets{grid-template-columns:1fr}}
+/* science: the conditions h3 sits in a narrow column on phones; let it use the full width */
+@media (max-width:860px){.u-page .h3{max-width:none}}
+.film-dur{position:absolute;right:12px;bottom:12px;z-index:2;font:600 12px/1 'Work Sans',sans-serif;color:#fff;background:rgba(0,0,0,.6);padding:5px 8px;border-radius:4px}
+.film-row.wide .film-media{aspect-ratio:16/10}
+.photo-pair{display:grid;grid-template-columns:1.3fr 1fr;gap:var(--s-6)}
+.photo-pair .pp{position:relative;border-radius:var(--r-lg);overflow:hidden;aspect-ratio:4/3}
+.photo-pair .pp:first-child{aspect-ratio:auto}
+@media (max-width:860px){.photo-pair{grid-template-columns:1fr}.photo-pair .pp:first-child{aspect-ratio:4/3}}
+/* light cards placed on a dark/red ground keep dark text */
+:is(.g-dark,.g-red,.g-deepred) :is(.card,.step,.order-card,.film-card,.story-card2,.buy-panel,.doc,.guarantee) :is(h1,h2,h3,h4,h5,p,.lead,.body,li){color:var(--color-text)}
+:is(.g-dark,.g-red,.g-deepred) :is(.card,.step,.order-card,.film-card,.story-card2,.buy-panel,.doc,.guarantee) .muted{color:var(--color-text-muted)}
+:is(.g-dark,.g-red,.g-deepred) :is(.card,.step) .eyebrow,:is(.g-dark,.g-red,.g-deepred) .card .tile-label{color:var(--color-primary)}

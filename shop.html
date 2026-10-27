@@ -53,251 +53,84 @@
 
 <main id="shop">
 
-  <!-- ========== 1. PAGE HERO ========== -->
-  <section class="page-hero">
-    <div class="container">
+  <section class="page-film">
+    <div class="pf-img" aria-hidden="true"><img src="assets/film/page-shop.jpg" alt="" style="object-position:50% 45%" fetchpriority="high"></div>
+    <div class="pf-scrim"></div>
+    <div class="container pf-content">
       <div class="eyebrow">CRS Shop</div>
-      <!-- [VERBATIM] client headline -->
-      <h1>CRS Shop</h1>
-      <!-- [VERBATIM] client subhead — period is theirs, keep it -->
-      <p class="lead">A roadmap to soundness.</p>
-      <div style="margin-top:var(--s-6)">
-        <!-- [NEW] CTA — verb+value, routes to first product section -->
-        <a class="btn btn-primary" href="#therapeutic">
-          Find your horse's shoe
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-        </a>
+      <h1>Order CRS shoes. <span class="hv">A roadmap to soundness.</span></h1>
+      <p class="lead">Pick the line, pick the size, add to cart. Every order is backed by a 30-day money-back guarantee.</p>
+      <div class="hero-ctas"><a class="btn btn-primary" href="#order">Start your order <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a><a class="btn btn-secondary" href="products.html#choose">Which shoe do I need?</a></div>
+    </div>
+  </section>
+
+  <section class="u-exhale g-cream" id="order">
+    <div class="container">
+      <div class="buy-head">
+        <h2 class="statement">Two lines. <strong>Sold in pairs.</strong></h2>
+        <p class="lead muted">Front sizes 000&ndash;2. Hinds and special sizes by special order.</p>
+      </div>
+      <div class="order-grid">
+        <article class="order-card" id="therapeutic" data-line="Therapeutic">
+          <div class="buy-img ph-host"><img class="ph-img" src="assets/s662968199686885824_p1_i2_w2275.png" alt="CRS therapeutic horseshoe"></div>
+          <div class="order-body">
+            <div><div class="prod-cat">Therapeutic</div><h3>For horses in trouble.</h3><p class="body muted" style="margin-top:var(--s-2)">Navicular, ringbone, soft tissue injury, side bone, low hoof angle.</p></div>
+            <div><div class="opt-label">Front size</div><fieldset class="sizes" aria-label="Therapeutic front size"><input type="radio" name="therapeutic-size" id="therapeutic-000" value="000"><label for="therapeutic-000">000</label><input type="radio" name="therapeutic-size" id="therapeutic-00" value="00"><label for="therapeutic-00">00</label><input type="radio" name="therapeutic-size" id="therapeutic-0" value="0" checked><label for="therapeutic-0">0</label><input type="radio" name="therapeutic-size" id="therapeutic-1" value="1"><label for="therapeutic-1">1</label><input type="radio" name="therapeutic-size" id="therapeutic-2" value="2"><label for="therapeutic-2">2</label></fieldset>
+              <p style="margin-top:var(--s-2);font-size:.88rem"><a href="https://www.crshorseshoe.com/uploads/1/3/8/4/138428570/crs_shoe_sizing_chart.pdf" target="_blank" rel="noopener" style="color:var(--color-primary);font-weight:600">Not sure? Sizing chart</a></p></div>
+            <div><div class="opt-label">Pairs</div><div class="qty"><button type="button" data-q="-1" aria-label="One fewer pair">&minus;</button><output aria-live="polite">1</output><button type="button" data-q="1" aria-label="One more pair">+</button></div></div>
+            <div class="order-foot"><div class="buy-price">$62&ndash;$99 <small>per pair &middot; varies by size</small></div>
+              <button class="btn btn-primary add-cart" type="button">Add to cart <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button></div>
+          </div>
+        </article>
+        <article class="order-card" id="performance" data-line="Performance">
+          <div class="buy-img ph-host"><img class="ph-img" src="assets/s662968199686885824_p4_i3_w2599.jpeg" alt="CRS performance horseshoe"></div>
+          <div class="order-body">
+            <div><div class="prod-cat">Performance</div><h3>For every discipline.</h3><p class="body muted" style="margin-top:var(--s-2)">Lower-level pathology, added traction, every discipline.</p></div>
+            <div><div class="opt-label">Front size</div><fieldset class="sizes" aria-label="Performance front size"><input type="radio" name="performance-size" id="performance-000" value="000"><label for="performance-000">000</label><input type="radio" name="performance-size" id="performance-00" value="00"><label for="performance-00">00</label><input type="radio" name="performance-size" id="performance-0" value="0" checked><label for="performance-0">0</label><input type="radio" name="performance-size" id="performance-1" value="1"><label for="performance-1">1</label><input type="radio" name="performance-size" id="performance-2" value="2"><label for="performance-2">2</label></fieldset>
+              <p style="margin-top:var(--s-2);font-size:.88rem"><a href="https://www.crshorseshoe.com/uploads/1/3/8/4/138428570/crs_shoe_sizing_chart.pdf" target="_blank" rel="noopener" style="color:var(--color-primary);font-weight:600">Not sure? Sizing chart</a></p></div>
+            <div><div class="opt-label">Pairs</div><div class="qty"><button type="button" data-q="-1" aria-label="One fewer pair">&minus;</button><output aria-live="polite">1</output><button type="button" data-q="1" aria-label="One more pair">+</button></div></div>
+            <div class="order-foot"><div class="buy-price">$79&ndash;$89 <small>per pair &middot; varies by size</small></div>
+              <button class="btn btn-primary add-cart" type="button">Add to cart <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button></div>
+          </div>
+        </article>
+      </div>
+      <div class="hinds">
+        <div><div class="prod-cat">Hinds &amp; special sizes</div><h3 class="h3" style="margin:4px 0 0">Special order. Riley will quote it.</h3></div>
+        <a class="btn btn-secondary" href="contact.html">Ask about hinds</a>
+      </div>
+      <div class="order-trust">
+        <div><span class="ot-i">30</span><div><b>30-day money-back guarantee</b><span>Full refund within 30 days if you&rsquo;re not satisfied. Buyer pays return shipping.</span></div></div>
+        <div><span class="ot-i">&#9992;</span><div><b>Shipping calculated at checkout</b><span>Size and destination set the rate. <span class="need" style="margin-top:6px">Needed from CRS: shipping rates</span></span></div></div>
+        <div><span class="ot-i">?</span><div><b>Not sure which size?</b><span>Call Riley at <a href="tel:+15057161800" style="color:var(--color-primary);font-weight:600">505-716-1800</a> or get a <a href="metron.html" style="color:var(--color-primary);font-weight:600">Metron hoof analysis</a> ($95).</span></div></div>
       </div>
     </div>
   </section>
 
-  <!-- ========== 2. TRUST RAIL ========== -->
-  <!-- [NEW] framing; [VERBATIM] guarantee text; [ASSET-GAP] shipping + subscription -->
-  <section class="sec band" aria-label="Purchase confidence">
+  <section class="u-dense g-dark">
     <div class="container">
-      <div class="grid-3" role="list">
-
-        <!-- Trust 1 — Guarantee [VERBATIM] FAQ Q6 -->
-        <div class="card" role="listitem">
-          <div style="display:flex;align-items:flex-start;gap:var(--s-3);margin-bottom:var(--s-3)">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:22px;height:22px;color:var(--color-primary);flex:none;margin-top:2px" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-            <strong>30-day money-back guarantee.</strong>
-          </div>
-          <p class="muted" style="font-size:.92rem">Not satisfied? Full refund within 30 days. Buyer pays return shipping.</p>
+      <div class="story-u">
+        <div class="how-media ph-host yt" role="button" tabindex="0" data-yt="eykBWoLXKTk" data-vtitle="NFR breakaway roper Bailey Bates talks about CRS Horseshoes" aria-label="Play: NFR breakaway roper Bailey Bates talks about CRS Horseshoes" style="aspect-ratio:16/9">
+          <img class="ph-img" src="https://i.ytimg.com/vi/eykBWoLXKTk/maxresdefault.jpg" alt="" loading="lazy">
+          <div class="play"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg></div>
         </div>
-
-        <!-- Trust 2 — Shipping [ASSET-GAP] framed [NEW] -->
-        <div class="card" role="listitem">
-          <div style="display:flex;align-items:flex-start;gap:var(--s-3);margin-bottom:var(--s-3)">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:22px;height:22px;color:var(--color-primary);flex:none;margin-top:2px" aria-hidden="true"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
-            <strong>Shipping calculated at checkout.</strong>
-          </div>
-          <p class="muted" style="font-size:.92rem">Size and destination determine your rate. International orders welcome. <span style="color:var(--color-primary);font-weight:600;font-size:.82rem">[ASSET-GAP] exact rates pending Riley confirm</span></p>
-        </div>
-
-        <!-- Trust 3 — Loyalty / Subscription [ASSET-GAP] -->
-        <div class="card" role="listitem">
-          <div style="display:flex;align-items:flex-start;gap:var(--s-3);margin-bottom:var(--s-3)">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:22px;height:22px;color:var(--color-text-muted);flex:none;margin-top:2px" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            <strong style="color:var(--color-text-muted)">Rewards program</strong>
-          </div>
-          <p class="muted" style="font-size:.92rem">Loyalty points and recurring order options in development. <span style="color:var(--color-primary);font-weight:600;font-size:.82rem">[ASSET-GAP] coming — terms TBD with Riley</span></p>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ========== 3. SHOP LAYOUT — sidebar + grid ========== -->
-  <section class="sec" id="therapeutic">
-    <div class="container">
-      <div class="shop-layout">
-
-        <!-- FACETS SIDEBAR — visual-only in comp -->
-        <aside class="facets" aria-label="Filter products">
-
-          <div class="facet-h">Shoe Type</div>
-          <nav class="facet" aria-label="Filter by shoe type">
-            <!-- [NEW] "All" active by default in comp -->
-            <a href="#" class="on" aria-current="true">All shoes</a>
-            <!-- [VERBATIM] intent — intake line 229 -->
-            <a href="#">Therapeutic</a>
-            <a href="#">Performance</a>
-            <a href="#">Hinds (special order)</a>
-          </nav>
-
-          <div class="facet-h">Size</div>
-          <!-- [VERBATIM] size range — 000–2 from copy/02-products.md -->
-          <nav class="facet" aria-label="Filter by size">
-            <a href="#">000</a>
-            <a href="#">00</a>
-            <a href="#">0</a>
-            <a href="#">1</a>
-            <a href="#">2</a>
-          </nav>
-
-          <!-- [NEW] sidebar help CTA — low-pressure -->
-          <div style="margin-top:var(--s-8);padding-top:var(--s-6);border-top:1px solid var(--color-border)">
-            <p class="muted" style="font-size:.9rem;margin-bottom:var(--s-4)">Not sure which size fits your horse?</p>
-            <a class="btn btn-secondary" href="contact.html" style="width:100%;justify-content:center">Ask Riley</a>
-          </div>
-
-        </aside><!-- /.facets -->
-
-        <!-- PRODUCT GRID -->
         <div>
-          <div class="shop-grid" role="list" aria-label="CRS horseshoe products">
-
-            <!-- ---- CARD A: Therapeutic ---- -->
-            <!-- [VERBATIM] prices, sizes, "Sold in pairs" from copy/02-products.md -->
-            <article class="prod" role="listitem" id="therapeutic-shoes">
-              <div class="prod-img ph-host">
-                <img class="ph-img" src="assets/s662968199686885824_p1_i2_w2275.png" alt="CRS therapeutic horseshoe, top view">
-              </div>
-              <div class="prod-body">
-                <!-- [VERBATIM] -->
-                <div class="prod-cat">Therapeutic</div>
-                <h4>Front shoes &mdash; sizes 000&ndash;2</h4>
-                <!-- [VERBATIM] price range from copy/02-products.md -->
-                <div class="price">$62&ndash;$99 <small>/ pair</small></div>
-                <p class="muted" style="font-size:.82rem;margin:var(--s-2) 0"><span style="color:var(--color-primary);font-weight:600">[ASSET-GAP]</span> per-size pricing pending Riley confirm</p>
-                <!-- [VERBATIM] -->
-                <div class="prod-foot">
-                  <span>Sold in pairs</span>
-                  <!-- [NEW] CTA — verb+value, NOT "Buy now" -->
-                  <a href="products.html" style="color:var(--color-primary);font-weight:700">View shoe &rarr;</a>
-                </div>
-              </div>
-            </article>
-
-            <!-- ---- CARD B: Performance ---- -->
-            <article class="prod" role="listitem" id="performance-shoes">
-              <div class="prod-img ph-host">
-                <img class="ph-img" src="assets/s662968199686885824_p4_i3_w2599.jpeg" alt="CRS horseshoe on the hoof">
-              </div>
-              <div class="prod-body">
-                <!-- [VERBATIM] -->
-                <div class="prod-cat">Performance</div>
-                <h4>Front shoes &mdash; sizes 000&ndash;2</h4>
-                <!-- [VERBATIM] price range from copy/02-products.md -->
-                <div class="price">$79&ndash;$89 <small>/ pair</small></div>
-                <p class="muted" style="font-size:.82rem;margin:var(--s-2) 0"><span style="color:var(--color-primary);font-weight:600">[ASSET-GAP]</span> per-size pricing pending Riley confirm</p>
-                <!-- [VERBATIM] -->
-                <div class="prod-foot">
-                  <span>Sold in pairs</span>
-                  <!-- [NEW] CTA -->
-                  <a href="products.html" style="color:var(--color-primary);font-weight:700">View shoe &rarr;</a>
-                </div>
-              </div>
-            </article>
-
-            <!-- ---- CARD C: Hinds / Special order (.prod.soon) ---- -->
-            <!-- [VERBATIM] hinds note from copy/02-products.md How to choose -->
-            <article class="prod soon" role="listitem" id="hinds-shoes">
-              <div class="prod-img" role="img" aria-label="[ASSET-GAP] Hinds shoes — coming">
-                <span>Coming soon</span>
-              </div>
-              <div class="prod-body">
-                <!-- [VERBATIM] intent — intake line 229 -->
-                <div class="prod-cat">Hinds</div>
-                <h4>Special order</h4>
-                <!-- [VERBATIM] from copy/02-products.md -->
-                <p class="muted" style="font-size:.92rem;margin-bottom:var(--s-3)">Hinds and special sizes are available as special order items.</p>
-                <!-- [NEW] honest — no invented price -->
-                <div class="price">Contact for pricing</div>
-                <div class="prod-foot">
-                  <span></span>
-                  <!-- [NEW] CTA routes to Contact, not cart -->
-                  <a href="contact.html" style="color:var(--color-primary);font-weight:700">Ask about hinds &rarr;</a>
-                </div>
-              </div>
-            </article>
-
-          </div><!-- /.shop-grid -->
-
-          <!-- Guarantee line at point of decision — [VERBATIM] FAQ Q6 -->
-          <p class="muted" style="margin-top:var(--s-6);font-size:.92rem;display:flex;align-items:center;gap:var(--s-2)">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px;color:var(--color-primary);flex:none" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-            30-day money-back guarantee. Not satisfied? Full refund within 30 days — buyer pays return shipping.
-          </p>
-
-        </div><!-- end shop-grid column -->
-
-      </div><!-- /.shop-layout -->
-    </div>
-  </section>
-
-  <!-- ========== 4. HOW TO CHOOSE (below grid) ========== -->
-  <!-- [VERBATIM] choice logic from copy/02-products.md; [NEW] framing + h2 -->
-  <section class="sec band">
-    <div class="container">
-      <div class="sec-narrow">
-        <div class="eyebrow center">How to choose</div>
-        <!-- [NEW] h2 — parallel to products.html "Which shoe fits your horse?" -->
-        <h2 class="h2" style="text-align:center;margin-bottom:var(--s-8)">Which shoe fits your horse?</h2>
-
-        <!-- [VERBATIM] decision rules from copy/02-products.md -->
-        <div class="checklist">
-          <div class="check">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-            <span><strong>Navicular, ringbone, soft tissue injury</strong> &rarr; Therapeutic</span>
-          </div>
-          <div class="check">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-            <span><strong>Performance, trail, or pasture horse needing extra protection + comfort</strong> &rarr; Performance</span>
-          </div>
-          <div class="check">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-            <span><strong>Low hoof angle</strong> &rarr; Therapeutic</span>
-          </div>
-          <!-- [VERBATIM] hinds note -->
-          <div class="check">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-            <span>Hinds and special sizes are available as special order items.</span>
-          </div>
+          <div class="eyebrow">Before you order</div>
+          <h2 class="h2">Hear it from an NFR roper.</h2>
+          <p class="lead" style="margin-bottom:var(--s-6)">Bailey Bates on why her horses run in CRS.</p>
+          <a class="btn btn-secondary" href="reviews.html">More stories</a>
         </div>
-
-        <!-- [NEW] helper line from microcopy bank -->
-        <p class="muted" style="margin-top:var(--s-6);margin-bottom:var(--s-6)">Still not sure? Ask Riley &mdash; a real farrier, not a form bot.</p>
-
-        <div style="display:flex;gap:var(--s-4);flex-wrap:wrap;align-items:center">
-          <!-- [NEW] CTA — RMBC approved verb+value -->
-          <a class="btn btn-primary" href="contact.html">Ask Riley</a>
-          <a class="btn btn-secondary" href="metron.html">Get a Metron hoof analysis &mdash; $95</a>
-        </div>
-
-        <!-- [VERBATIM] guarantee — second appearance at decision point -->
-        <div style="margin-top:var(--s-8);padding:var(--s-6);border:1px solid var(--color-border);border-radius:var(--r-md);background:var(--color-surface)">
-          <p style="font-weight:600;color:var(--color-primary);margin-bottom:var(--s-2)">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px;vertical-align:-2px;margin-right:6px" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-            30-day money-back guarantee.
-          </p>
-          <!-- [VERBATIM] FAQ Q6 -->
-          <p class="muted" style="font-size:.92rem">Not satisfied? Full refund within 30 days if not satisfied. Buyer pays return shipping. No hoops.</p>
-        </div>
-
       </div>
     </div>
   </section>
 
-  <!-- ========== 5. EMAIL CAPTURE ========== -->
-  <!-- [NEW] — identical to home.html sec 10 for cross-page consistency -->
-  <section class="sec">
-    <div class="container">
-      <div class="email-grid">
-        <div>
-          <div class="eyebrow">Stay close</div>
-          <h2 class="h2">Join the Heard.</h2>
-          <p class="lead muted">Case studies, clinic dates, and what we're learning about hoof care &mdash; only when we've got something worth your inbox.</p>
-        </div>
-        <form class="form" onsubmit="event.preventDefault();">
-          <div class="field">
-            <label for="shopEmail">Email address</label>
-            <input id="shopEmail" type="email" placeholder="you@example.com" autocomplete="email" required />
-          </div>
-          <button class="btn btn-primary" type="submit">Subscribe</button>
-          <p class="privacy">No spam. Unsubscribe anytime.</p>
-        </form>
+  <div class="cart-toast" role="status" aria-live="polite"></div>
+
+  <section class="u-cta g-red">
+    <div class="container page-close">
+      <div><h2>Questions before you buy?</h2><p class="lead" style="margin-top:var(--s-5)">Ask Riley, a real farrier, not a form bot. Replies in 24&ndash;48 hours.</p></div>
+      <div class="ctas">
+        <a class="btn btn-primary" href="contact.html">Ask Riley <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        <a class="btn btn-secondary" href="products.html#choose">Which shoe do I need?</a>
       </div>
     </div>
   </section>
@@ -309,7 +142,7 @@
     <div class="foot-grid">
       <div class="foot-brand">
         <div class="brand">CRS <span>HORSESHOES</span></div>
-        <p class="foot-tag">A second chance for horses. <span style="color:rgba(255,255,255,.45);font-size:.85rem">[ASSET-GAP] confirm footer use w/ Riley</span></p>
+        <p class="foot-tag">A second chance for horses.</p>
         <p style="font-size:.85rem;color:rgba(255,255,255,.5)">Patented &middot; US&nbsp;11,026,413 &middot; Granted 2020</p>
       </div>
       <div class="foot-col">

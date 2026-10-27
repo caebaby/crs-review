@@ -48,30 +48,22 @@
 </header>
 
 <main id="about">
-
-  <!-- ① PAGE HERO -->
-  <section class="page-hero">
-    <div class="container">
-      <div class="grid-2">
-        <div class="reveal-hero">
-          <div class="eyebrow">Our story</div>
-          <h1 class="h1">MEET THE TEAM</h1><!-- [VERBATIM] client KEEP -->
-          <p class="lead">A working farrier who ran out of answers &mdash; then forged a new one. Meet the people behind the patent.</p><!-- [NEW] -->
-        </div>
-        <div class="team-photo ph-host" role="img" aria-label="CRS team">
-          <img class="ph-img" src="assets/img-3289.jpeg" alt="CRS team" />
-        </div>
-      </div>
+  <section class="page-film">
+    <div class="pf-img" aria-hidden="true"><img src="assets/film/page-about.jpg" alt="" style="object-position:50% 40%" fetchpriority="high"></div>
+    <div class="pf-scrim"></div>
+    <div class="container pf-content">
+      <div class="eyebrow">Our story</div>
+      <h1>The people <span class="hv">behind the patent.</span></h1>
+      <p class="lead">A working farrier who ran out of answers, then forged a new one. Meet the people behind CRS.</p>
+      <div class="hero-ctas"><a class="btn btn-primary" href="#story">Watch the origin story <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a><a class="btn btn-secondary" href="home.html#help">My horse needs help</a></div>
     </div>
   </section>
 
-  <!-- ② OUR STORY -->
-  <section class="sec band">
+  <section class="u-exhale g-ivory" id="story">
     <div class="container">
       <div class="story-grid">
         <div>
-          <div class="eyebrow">Our story</div>
-          <h2 class="h2">It started with horses no one could fix.</h2><!-- [NEW] -->
+          <h2 class="statement" style="margin-bottom:var(--s-6)">It started with horses <strong>no one could fix.</strong></h2><!-- [NEW] -->
           <div class="body">
             <!-- [VERBATIM] Riley's founding narrative — do not rewrite -->
             <p>After 30 years of using traditional methods, I was no closer to helping the horses that needed help the most. Out of sheer desperation, I started forging unusual shapes in steel shoes.</p>
@@ -80,37 +72,29 @@
           <p class="pull">The horses began to respond favorably.</p><!-- [VERBATIM] as pull -->
         </div>
         <div>
-          <div class="story-media ph-host" role="img" aria-label="Riley Henson at work">
-            <img class="ph-img" src="assets/image000000.jpg" alt="Riley Henson at work" />
-            <span class="media-tag">Founder candid</span>
-            <div class="play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg></div>
-            <span class="media-note" style="position:absolute;bottom:var(--s-3);left:var(--s-3);z-index:2;font-size:.75rem;background:rgba(0,0,0,.55);color:#fff;padding:2px 8px;border-radius:var(--r-sm)">&#9654; Video to come</span>
-          </div>
+          <div class="how-media ph-host yt" role="button" tabindex="0" data-yt="NS4LL1KDZxU" data-vtitle="CRS Horseshoes origin story" aria-label="Play: CRS Horseshoes origin story" style="aspect-ratio:16/9">
+          <img class="ph-img" src="assets/yt-origin-story.jpg" alt="" loading="lazy">
+          <div class="play"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg></div>
+        </div>
         </div>
       </div>
     </div>
   </section>
-
-  <!-- ③ MISSION + PATENT -->
-  <section class="sec band-cream">
+  <section class="u-exhale g-dark">
     <div class="container">
       <div class="grid-2">
         <div>
-          <div class="eyebrow">Mission</div>
           <h2 class="h2">Every horse deserves a second chance.</h2><!-- [NEW] -->
           <!-- [VERBATIM] mission statement -->
           <p class="lead">CRS Horseshoes develops innovative hoof care solutions designed to support long-term soundness, comfort, and performance in every horse.</p>
         </div>
         <div>
-          <div class="eyebrow">The patent</div>
           <h3 class="h3">US&nbsp;11,026,413 &mdash; granted 2020.</h3><!-- [NEW] + verbatim number -->
           <div class="body">
             <!-- [VERBATIM] patent story -->
             <p>In 2020 we received a patent for a horseshoe with the unique feature of a rounded medial/lateral plane. The mechanical advantage resolves leverage that can&rsquo;t be addressed with a flat shoe. There is no one plane that&rsquo;s correct all the time.</p>
           </div>
-          <div style="margin-top:var(--s-6);padding:var(--s-4) var(--s-6);background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--r-md);display:inline-block">
-            <p class="eyebrow" style="margin-bottom:0">Patented &middot; US&nbsp;11,026,413 &middot; Granted 2020</p><!-- [NEW] badge -->
-          </div>
+          
           <div style="margin-top:var(--s-6)">
             <a class="btn btn-secondary" href="science.html">See the full science</a><!-- [NEW] CTA -->
           </div>
@@ -118,16 +102,13 @@
       </div>
     </div>
   </section>
-
-  <!-- ④ TEAM -->
-  <section class="sec">
+  <section class="u-dense g-cream-light">
     <div class="container">
-      <div class="sec-head">
-        <div class="eyebrow">The team</div><!-- [NEW] -->
+      <div class="sec-head"><!-- [NEW] -->
         <h2 class="h2">Three farriers, one mission.</h2><!-- [NEW] -->
         <p class="lead muted">The people building, testing, and applying CRS in the field.</p><!-- [NEW] -->
       </div>
-      <p class="muted" style="font-size:.82rem;margin-bottom:var(--s-6);padding:var(--s-3) var(--s-4);background:var(--color-cream-light);border:1px solid var(--color-border);border-radius:var(--r-md)">Bios &amp; roles are verbatim from the current crshorseshoe.com site. Photos follow the client&rsquo;s live-site order &mdash; exact photo&ndash;name pairing to confirm with Riley/Taylor.</p>
+      <p style="margin-bottom:var(--s-6)"><span class="need">Needed from CRS: confirm which photo is which person</span></p>
 
       <div class="team-grid">
 
@@ -179,24 +160,23 @@
       </div>
     </div>
   </section>
-
-  <!-- ⑤ VET TRUST BAR -->
-  <section class="sec band">
+  <section class="u-exhale g-ivory">
     <div class="container">
-      <div class="quote-grid">
-        <div class="quote-media" aria-hidden="true">
-          <span>[ASSET-GAP] Dr. Walker portrait (optional)</span>
-        </div>
-        <div>
-          <div class="eyebrow">In their words</div><!-- [NEW] -->
-          <h2 class="h2">Trusted by vets, used by farriers.</h2><!-- [NEW] -->
-          <!-- [VERBATIM] -->
-          <blockquote>CRS Horseshoes are preventative medicine for the equine athlete.</blockquote>
-          <cite>Dan Walker, DVM<br><span>Veterinarian</span></cite><!-- [VERBATIM] -->
-          <div style="margin-top:var(--s-8)">
-            <a class="btn btn-secondary" href="reviews.html">See the case studies</a><!-- [NEW] CTA -->
-          </div>
-        </div>
+      <div class="big-quote">
+        <div class="q-rule"></div>
+        <blockquote>CRS Horseshoes are <strong>preventative medicine</strong> for the equine athlete.</blockquote>
+        <cite>Dan Walker, DVM<br><span>Veterinarian</span></cite>
+        <div style="margin-top:var(--s-8)"><a class="btn btn-secondary" href="reviews.html">See the case studies</a></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="u-cta g-red">
+    <div class="container page-close">
+      <div><h2>Every horse deserves a second chance.</h2><p class="lead" style="margin-top:var(--s-5)">Find the right shoe in one click, or talk your horse&rsquo;s case through with Riley.</p></div>
+      <div class="ctas">
+        <a class="btn btn-primary" href="home.html#help">My horse needs help <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        <a class="btn btn-secondary" href="home.html#buy">Shop CRS</a>
       </div>
     </div>
   </section>
@@ -208,7 +188,7 @@
     <div class="foot-grid">
       <div class="foot-brand">
         <div class="brand">CRS <span>HORSESHOES</span></div>
-        <p class="foot-tag">A second chance for horses. <span style="color:rgba(255,255,255,.45);font-size:.85rem">[ASSET-GAP] confirm footer use w/ Riley</span></p>
+        <p class="foot-tag">A second chance for horses.</p>
         <p style="font-size:.85rem;color:rgba(255,255,255,.5)">Patented &middot; US&nbsp;11,026,413 &middot; Granted 2020</p>
       </div>
       <div class="foot-col">
