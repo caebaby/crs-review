@@ -680,3 +680,17 @@ html.state-final .btn::after{animation:none!important}
 :is(.g-dark,.g-red,.g-deepred) :is(.card,.step,.order-card,.film-card,.story-card2,.buy-panel,.doc,.guarantee) :is(h1,h2,h3,h4,h5,p,.lead,.body,li){color:var(--color-text)}
 :is(.g-dark,.g-red,.g-deepred) :is(.card,.step,.order-card,.film-card,.story-card2,.buy-panel,.doc,.guarantee) .muted{color:var(--color-text-muted)}
 :is(.g-dark,.g-red,.g-deepred) :is(.card,.step) .eyebrow,:is(.g-dark,.g-red,.g-deepred) .card .tile-label{color:var(--color-primary)}
+
+/* ── Round 11: shoot testimonials ── */
+.film-q{margin:8px 0 0;font-size:.95rem;line-height:1.45;color:var(--color-text-muted)}
+.pull-q{margin:var(--s-4) 0 var(--s-6);font-size:clamp(1.6rem,2.6vw,2.4rem);font-weight:300;line-height:1.15;letter-spacing:-.02em;color:inherit}
+.pull-q.sm{font-size:clamp(1.15rem,1.6vw,1.4rem);margin:0 0 var(--s-4)}
+.how-media{position:relative}
+.film-row.two{grid-template-columns:1fr 1fr}
+@media (max-width:640px){.film-row.two{display:flex}}
+.pull-q::before{content:none}.pull-q{max-width:22ch}
+/* interview thumbnails: play button bottom-left in CRS red so it never sits on a face */
+:is(.film-media,.how-media) .play{inset:auto auto 14px 14px;margin:0;width:56px;height:56px;background:var(--color-primary);color:#fff}
+:is(.film-media,.how-media) .play svg{width:20px;height:20px}
+:is(.film-media,.how-media)[role=button]:hover .play{background:var(--color-primary-dark);color:#fff}
+.how-media .play{width:68px;height:68px;inset:auto auto 20px 20px}
