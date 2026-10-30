@@ -775,3 +775,9 @@ main>section#help.tx-sweep::before{--tx-o:.1}
 main>section:not(.tx-top,.tx-head,.tx-fade,.tx-sweep,.tx-full)::before{content:none}
 /* tx-head: sits behind the section headline and is gone before the content starts */
 main>section.tx-head::before{-webkit-mask-image:linear-gradient(180deg,#000 0,rgba(0,0,0,.45) 160px,transparent 360px);mask-image:linear-gradient(180deg,#000 0,rgba(0,0,0,.45) 160px,transparent 360px)}
+
+/* ── Round 19: plain gold line instead of the woven trim; every pattern fades top-down ── */
+:is(.page-film,.hero-film)::after{height:3px;background:#E8B04B;opacity:1}
+footer::before{height:2px;background:#E8B04B;opacity:1}
+main>section.trim-top::after{height:2px;background:#E8B04B;opacity:1}
+main>section.tx-sweep::before{-webkit-mask-image:linear-gradient(180deg,#000 0%,rgba(0,0,0,.5) 35%,transparent 75%);mask-image:linear-gradient(180deg,#000 0%,rgba(0,0,0,.5) 35%,transparent 75%)}
