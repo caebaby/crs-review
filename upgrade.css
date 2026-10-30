@@ -767,3 +767,11 @@ main>section.tx-none::before{content:none}
 /* statement: faint at the top, gone to zero before the red band so the two patterns never touch */
 main>section.tx-top::before{--tx-o:.06;-webkit-mask-image:linear-gradient(180deg,#000 0%,rgba(0,0,0,.4) 45%,transparent 80%);mask-image:linear-gradient(180deg,#000 0%,rgba(0,0,0,.4) 45%,transparent 80%)}
 main>section#help.tx-sweep::before{--tx-o:.1}
+
+/* ── Round 18: pattern rules site-wide ──
+   1 patterns mark moments: off by default, opt in with a tx-* class (2-3 per page, near the top)
+   2 behind headlines only, never cards/forms/prices/video  3 always faded at the edges
+   4 one treatment per spot  5 faint (5-10%)  6 woven trim only under the hero, over the footer, and once on home */
+main>section:not(.tx-top,.tx-head,.tx-fade,.tx-sweep,.tx-full)::before{content:none}
+/* tx-head: sits behind the section headline and is gone before the content starts */
+main>section.tx-head::before{-webkit-mask-image:linear-gradient(180deg,#000 0,rgba(0,0,0,.45) 160px,transparent 360px);mask-image:linear-gradient(180deg,#000 0,rgba(0,0,0,.45) 160px,transparent 360px)}
