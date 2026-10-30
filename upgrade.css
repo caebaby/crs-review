@@ -761,3 +761,9 @@ main>section.tx-sweep::before{-webkit-mask-image:linear-gradient(270deg,#000 0%,
 /* full width at the top, fading out as it drops below the headline / art */
 main>section.tx-fade::before{-webkit-mask-image:linear-gradient(180deg,#000 0%,rgba(0,0,0,.6) 40%,transparent 82%);mask-image:linear-gradient(180deg,#000 0%,rgba(0,0,0,.6) 40%,transparent 82%)}
 main>section#buy.tx-fade::before{-webkit-mask-image:linear-gradient(180deg,#000 0%,rgba(0,0,0,.5) 18%,transparent 40%);mask-image:linear-gradient(180deg,#000 0%,rgba(0,0,0,.5) 18%,transparent 40%)}
+
+/* ── Round 17: calmer texture — patterns only at the top of the page, nothing behind the lower sections ── */
+main>section.tx-none::before{content:none}
+/* statement: faint at the top, gone to zero before the red band so the two patterns never touch */
+main>section.tx-top::before{--tx-o:.06;-webkit-mask-image:linear-gradient(180deg,#000 0%,rgba(0,0,0,.4) 45%,transparent 80%);mask-image:linear-gradient(180deg,#000 0%,rgba(0,0,0,.4) 45%,transparent 80%)}
+main>section#help.tx-sweep::before{--tx-o:.1}
