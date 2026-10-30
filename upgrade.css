@@ -748,3 +748,16 @@ footer::before{content:"";position:absolute;left:0;right:0;top:0;height:10px;bac
 @media (max-width:860px){main>section::before{background-size:34px 34px}}
 .hidden-note{background:#FFF4D6;border-bottom:1px solid #E8B04B;color:#4a3a12;font-size:.92rem;padding:12px 0}
 .hidden-note b{color:#7a5a12}
+
+/* ── Round 16: lighter, thinner trim; trim as a divider; full-width texture on key home sections ── */
+:root{--tx-trim-soft:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2250%22 height=%2250%22%3E%3Crect width=%22100%25%22 height=%22100%25%22 fill=%22%23B9524C%22/%3E%3Cpath fill=%22%23F2D9A4%22 d=%22m3.522 0 18.81 18.601 1.6 1.735L45.961 0H34.149L24.2 9.182 14.918 0ZM.064 35.31 0 35.366v11.15L3.522 50H14.92Zm49.935.057L34.148 50h11.814l3.91-3.61.127.127z%22/%3E%3Cpath fill=%22%23FDFBF7%22 d=%22M0 7.828v2.95L22.474 35.09l-.008.01.27.274 1.034 1.117.037-.036.067.069 26.062-25.815.064.069v-2.95L23.899 33.68Zm0 12.13v2.95L22.474 47.22l-.008.01.268.271 1.036 1.12.037-.035.067.067L49.936 22.84l.063.068v-2.95l-26.1 25.852Z%22/%3E%3C/svg%3E")}
+:is(.page-film,.hero-film)::after{height:8px;background:var(--tx-trim-soft) 0 0/8px 8px repeat-x;opacity:.85}
+footer::before{height:7px;background:var(--tx-trim-soft) 0 0/7px 7px repeat-x;opacity:.85}
+main>section.trim-top::after{content:"";position:absolute;left:0;right:0;top:0;height:7px;z-index:2;background:var(--tx-trim-soft) 0 0/7px 7px repeat-x;opacity:.8;pointer-events:none}
+/* full width, even and light */
+main>section.tx-full::before{-webkit-mask-image:none;mask-image:none;--tx-o:.045}
+/* strongest at the right, carried all the way across at a whisper */
+main>section.tx-sweep::before{-webkit-mask-image:linear-gradient(270deg,#000 0%,rgba(0,0,0,.35) 55%,rgba(0,0,0,.18) 100%);mask-image:linear-gradient(270deg,#000 0%,rgba(0,0,0,.35) 55%,rgba(0,0,0,.18) 100%)}
+/* full width at the top, fading out as it drops below the headline / art */
+main>section.tx-fade::before{-webkit-mask-image:linear-gradient(180deg,#000 0%,rgba(0,0,0,.6) 40%,transparent 82%);mask-image:linear-gradient(180deg,#000 0%,rgba(0,0,0,.6) 40%,transparent 82%)}
+main>section#buy.tx-fade::before{-webkit-mask-image:linear-gradient(180deg,#000 0%,rgba(0,0,0,.5) 18%,transparent 40%);mask-image:linear-gradient(180deg,#000 0%,rgba(0,0,0,.5) 18%,transparent 40%)}
